@@ -5,10 +5,10 @@ Using Types as Sets. This Python 3 only library allows you to use metaclass
 magic to make types act like sets. For example::
 
     >>> from typeset import TypeSet
-    >>> class Integer(int):
+    >>> class Integer(int, metaclass=TypeSet):
     ...     pass
     ...
-    >>> class Float(float):
+    >>> class Float(float, metaclass=TypeSet):
     ...     pass
     ...
     >>> Number = Integer | Float
