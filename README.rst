@@ -1,8 +1,8 @@
 TypeSet
 =======
 
-Using Types as Sets. This Python 3 only library allows you to use metaclass
-magic to make types act like sets. For example::
+Using Types as Sets. This Python 3 only library allows you to use
+metaclass magic to make types act like sets. For example::
 
     >>> from typeset import TypeSet
     >>> class Integer(int, metaclass=TypeSet):

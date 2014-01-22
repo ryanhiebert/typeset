@@ -13,7 +13,7 @@ class TypeSetTestCase(unittest.TestCase):
             pass
         self.assertTrue(A & A == A)
         self.assertTrue(A | A == A)
-        self.assertTrue(A.intersect(A) == A)
+        self.assertTrue(A.intersection(A) == A)
         self.assertTrue(A.union(A) == A)
 
 if __name__ == '__main__':
