@@ -1,3 +1,33 @@
+class PredicateSet:
+    def __init__(self, predicate):
+        self.predicate = predicate
+
+    def __contains__(self, item):
+        return self.predicate(item)
+
+    def isdisjoint(self, other):
+        return not (other in self or self in other)
+
+    def difference(self, other):
+        return PredicateSet(lambda x: x in self and x not in other)
+
+    def intersection(self, other):
+        return PredicateSet(lambda x: x in self and x in other)
+
+    def symmetric_difference(self, other):
+        left = self.difference(other)
+        right = other.difference(self)
+        return PredicateSet(lambda x: x in left or x in right)
+
+    def union(self, other):
+        return PredicateSet(lambda x: x in self or x in other)
+
+    __and__ = __rand__ = __iand__ = intersection
+    __or__ = __ror__ = __ior__ = union
+    __sub__ = __rsub__ = __isub__ = difference
+    __xor__ = __rxor__ = __ixor__ = symmetric_difference
+
+
 class TypeSet(type):
     def __init__(self, name, bases, dict):
         self.__composition = self
