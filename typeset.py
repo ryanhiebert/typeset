@@ -9,18 +9,30 @@ class PredicateSet:
         return not (other in self or self in other)
 
     def difference(self, other):
-        return PredicateSet(lambda x: x in self and x not in other)
+        if self is other:
+            return set()
+        else:
+            return PredicateSet(lambda x: x in self and x not in other)
 
     def intersection(self, other):
-        return PredicateSet(lambda x: x in self and x in other)
+        if self is other:
+            return self
+        else:
+            return PredicateSet(lambda x: x in self and x in other)
 
     def symmetric_difference(self, other):
         left = self.difference(other)
         right = other.difference(self)
-        return PredicateSet(lambda x: x in left or x in right)
+        if not left and not right:
+            return set()
+        else:
+            return PredicateSet(lambda x: x in left or x in right)
 
     def union(self, other):
-        return PredicateSet(lambda x: x in self or x in other)
+        if self is other:
+            return self
+        else:
+            return PredicateSet(lambda x: x in self or x in other)
 
     __and__ = __rand__ = __iand__ = intersection
     __or__ = __ror__ = __ior__ = union
