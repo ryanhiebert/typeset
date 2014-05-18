@@ -5,9 +5,6 @@ class PredicateSet:
     def __contains__(self, item):
         return self.predicate(item)
 
-    def isdisjoint(self, other):
-        return not (other in self or self in other)
-
     def difference(self, other):
         if self is other:
             return set()
