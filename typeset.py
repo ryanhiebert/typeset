@@ -7,7 +7,7 @@ class PredicateSet:
 
     def difference(self, other):
         if self is other:
-            return set()
+            return PredicateSet(lambda x: False)
         else:
             return PredicateSet(lambda x: x in self and x not in other)
 
